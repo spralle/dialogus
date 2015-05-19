@@ -8,9 +8,18 @@ dialogusModule.factory('DialogService', ['$document', '$compile', '$controller',
 
 		function DialogService() {
 		      var self = this;
+		      this._dialogHost = null;
 
 		      this.show = function(options) {
+		      	this._verifyDialogHostDirective();
+		      	this._dialogHost.show(options);
 		      	body.append('Test');
+		      }
+
+		      this._verifyDialogHostDirective = function() {
+		      	if(!this._dialogHost) {
+		      		body.getElementById('appBusyIndicator');
+		      	}
 		      }
 		}
 
